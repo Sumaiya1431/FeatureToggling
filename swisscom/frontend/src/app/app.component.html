@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <a href="index.html" class="navbar-brand" style="color:white;">Feature Toggle Manager</a>
+   <div class="collapse navbar-collapse" id="navbarColor02">
+      <ul class="navbar-nav mr-auto">
+         <li class="nav-item active">
+            <a class="nav-link" *ngIf="archive || enable" (click)="onFeature()">Features</a>
+         </li>
+         <li class="nav-item active" *ngIf="!archive && !enable">
+            <a class="nav-link" (click)="onAdd()">Add Feature</a>
+         </li>
+         <li class="nav-item active">
+            <a class="nav-link" (click)="goToArchive()">Archived Features</a>
+         </li>   
+         <li class="nav-item active">
+            <a class="nav-link" (click)="login()" *ngIf="!enable">Enable Features</a>
+         </li>
+         <li class="nav-item active">
+            <a class="nav-link" (click)="enableFeatures()" *ngIf="enable">Enable Features</a>
+         </li>   
+         <li class="nav-item active">
+            <a class="nav-link" (click)="onLogOut()" *ngIf="enable">LogOut</a>
+         </li> 
+      </ul>
+   </div>
+</nav>
+
+<form style="padding: 30px" *ngIf="showSearch">
+   <input type="search" (ngModelChange)="searchFeatures(key.value)" #key="ngModel" ngModel
+    name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search features..." required>
+</form>
+
+<router-outlet></router-outlet>
+
+ <!-- Add Feature Modal -->
+ <div class="modal fade" id="addEditFeatureModal" tabindex="-1" role="dialog" aria-labelledby="addEditFeatureModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+         <app-add></app-add>
+    </div>
+  </div>
+</div>
+
+   
